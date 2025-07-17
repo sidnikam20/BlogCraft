@@ -1,6 +1,6 @@
-package com.example.blogcraft.model;
+package com.example.blogcraft.dto;
 
-public class DashboardStats {
+public class DashboardStatsDto {
     private long totalBlogs;
     private long totalViews;
     private long totalLikes;
@@ -10,7 +10,6 @@ public class DashboardStats {
     private String lastPostDate;
     private String topRatedBlog;
 
-    // Getters and Setters
     public long getTotalBlogs() { return totalBlogs; }
     public void setTotalBlogs(long totalBlogs) { this.totalBlogs = totalBlogs; }
 

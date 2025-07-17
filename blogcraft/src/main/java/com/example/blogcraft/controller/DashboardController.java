@@ -1,40 +1,57 @@
 package com.example.blogcraft.controller;
 
+import com.example.blogcraft.model.Blog;
 import com.example.blogcraft.model.DashboardStats;
+import com.example.blogcraft.repository.BlogRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins = "*")
+@RequestMapping("/api/dashboard")
+@CrossOrigin
 public class DashboardController {
 
-    // A list to hold the blog posts (this is temporary; in real apps you'd use a database)
-    private List<DashboardStats.Post> postList = new ArrayList<>();
+    @Autowired
+    private BlogRepository blogRepo;
 
-    // Constructor to add some initial posts
-    public DashboardController() {
-        postList.add(new DashboardStats.Post("How to use Git", 200));
-        postList.add(new DashboardStats.Post("HTML Basics", 180));
-        postList.add(new DashboardStats.Post("CSS Tricks", 160));
-        postList.add(new DashboardStats.Post("JavaScript Tips", 140));
-        postList.add(new DashboardStats.Post("SEO Optimization", 130));
-    }
-
-    @GetMapping("/api/dashboard/stats")
+    @GetMapping("/stats")
     public DashboardStats getDashboardStats() {
-        return new DashboardStats(
-                postList.size(),
-                3500,    // you can later make this dynamic
-                250,
-                postList
-        );
-    }
+        List<Blog> blogs = blogRepo.findAll();
 
-    // ✅ New API to add a blog post
-    @PostMapping("/api/dashboard/addPost")
-    public void addPost(@RequestBody DashboardStats.Post post) {
-        postList.add(post);
+        DashboardStats stats = new DashboardStats();
+        stats.setTotalBlogs(blogs.size());
+        stats.setTotalViews(blogs.stream().mapToInt(Blog::getViews).sum());
+        stats.setTotalLikes(blogs.stream().mapToInt(Blog::getLikes).sum());
+        stats.setTotalComments(blogs.stream().mapToLong(b -> b.getComments().size()).sum());
+        stats.setTotalAuthors(blogs.stream()
+                .map(Blog::getAuthor)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet()).size());
+
+        // New posts within the last 7 days
+        LocalDate now = LocalDate.now();
+        long newPostsThisWeek = blogs.stream()
+                .filter(b -> b.getPostDate() != null && ChronoUnit.DAYS.between(b.getPostDate(), now) <= 7)
+                .count();
+        stats.setNewPostsThisWeek(newPostsThisWeek);
+
+        // Last post date
+        blogs.stream()
+                .map(Blog::getPostDate)
+                .filter(Objects::nonNull)
+                .max(LocalDate::compareTo)
+                .ifPresent(date -> stats.setLastPostDate(date.toString()));
+
+        // Top rated blog (by likes)
+        blogs.stream()
+                .max(Comparator.comparingInt(Blog::getLikes))
+                .ifPresent(b -> stats.setTopRatedBlog(b.getTitle()));
+
+        return stats;
     }
 }
