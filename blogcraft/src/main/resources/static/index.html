@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BlogCraft - Content Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>📚 BlogCraft - Content Dashboard</h1>
+
+  <!-- ✅ Summary Cards -->
+  <div id="summary-cards" class="card-grid">
+    <div class="card"><b>📄 Total Blogs:</b> <span id="total-blogs">0</span></div>
+    <div class="card"><b>👁️ Total Views:</b> <span id="total-views">0</span></div>
+    <div class="card"><b>❤️ Total Likes:</b> <span id="total-likes">0</span></div>
+    <div class="card"><b>💬 Total Comments:</b> <span id="total-comments">0</span></div>
+    <div class="card"><b>👤 Total Authors:</b> <span id="total-authors">0</span></div>
+    <div class="card"><b>🆕 New Posts This Week:</b> <span id="new-posts">0</span></div>
+    <div class="card"><b>📅 Last Post Date:</b> <span id="last-post-date">--</span></div>
+    <div class="card"><b>⭐ Top Rated Blog:</b> <span id="top-rated-blog">--</span></div>
+  </div>
+
+  <!-- ✅ Add New Blog Form -->
+  <div id="add-blog-form">
+    <h2>➕ Add New Blog Post</h2>
+
+    <div class="form-group">
+      <label for="title">🖊️ Blog Title <span class="char-count" id="title-count">0/100</span></label>
+      <input type="text" id="title" maxlength="100" placeholder="Enter Blog title" oninput="updateCharCount('title', 100)">
+    </div>
+
+    <div class="form-group">
+      <label for="content">📄 Blog Content <span class="char-count" id="content-count">0/5000</span></label>
+      <textarea id="content" maxlength="5000" rows="6" placeholder="Write your blog content..." oninput="updateCharCount('content', 5000)"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="author">👤 Author Name (optional)</label>
+      <input type="text" id="author" placeholder="Author Name">
+    </div>
+
+    <div class="form-group">
+      <label for="category">🏷️ Category (Domain)</label>
+      <input type="text" id="category" placeholder="Category">
+    </div>
+
+    <div class="form-actions">
+      <button onclick="postBlog()">Post Blog</button>
+    </div>
+  </div>
+
+  <!-- ✅ Search and Blog List -->
+  <div class="section-header">
+    <h2 class="section-title">All Blogs</h2>
+    <div class="search-container">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="🔍 Search blogs by title..."
+        onfocus="this.placeholder=''"
+        onblur="if(this.value==='') this.placeholder='🔍 Search blogs by title...'"
+        oninput="filterBlogsByTitle()"
+      />
+    </div>
+  </div>
+
+  <!-- ✅ Blog Cards Display -->
+  <div id="blog-list" class="blog-grid"></div>
+
+  <!-- ✅ Scripts -->
+  <script src="dashboard.js"></script>
+  <script>
+    function updateCharCount(id, max) {
+      const input = document.getElementById(id);
+      const count = document.getElementById(id + '-count');
+      count.textContent = `${input.value.length}/${max}`;
+    }
+  </script>
+
+</body>
+</html>

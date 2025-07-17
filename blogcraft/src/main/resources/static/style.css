@@ -1,0 +1,286 @@
+/* Base Dark Styling */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0d0f11;
+  margin: 0;
+  padding: 20px;
+  color: #ffffff;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Summary Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  row-gap: 16px;
+  column-gap: 30px;
+  margin: 30px auto;
+  max-width: 1000px;
+}
+
+.card {
+  background-color: #1a1d21;
+  border-left: 5px solid #4caf50;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  font-size: 16px;
+  color: #ddd;
+}
+
+/* Add Blog Form */
+#add-blog-form {
+  max-width: 700px;
+  margin: 40px auto;
+  background-color: #1a1d21;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+#add-blog-form h2 {
+  margin-bottom: 20px;
+  color: #aad8ff; 
+  text-align: left; 
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.char-count {
+  font-weight: normal;
+  font-size: 12px;
+  color: #888;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #333;
+  background-color: #101215;
+  color: #eee;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.form-actions {
+  text-align: right;
+}
+
+.form-actions button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 16px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-actions button:hover {
+  background-color: #45a045;
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+  padding-right: 20px;
+}
+
+.search-container input {
+  width: 250px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #121212;
+  color: white;
+}
+
+/* Blog List */
+#blog-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 70px;
+  margin: 30px auto;
+  padding: 0 10px;
+  max-width: 1300px;
+}
+
+/* Blog Card */
+.blog-card {
+  background: #1a1d21;
+  border: 1px solid #2a2d31;
+  border-left: 5px solid #4caf50;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  color: #eee;
+}
+
+.blog-card h3 {
+  margin: 0 0 10px;
+  color: #e0e0e0;
+}
+
+.blog-card p {
+  margin: 5px 0;
+  color: #ccc;
+}
+
+.blog-card small {
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #888;
+}
+
+/* Like & Comment Buttons */
+.like-btn,
+.comment-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.like-btn:hover,
+.comment-btn:hover {
+  background-color: #45a045;
+}
+
+/* Action Row */
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.action-row input[type="text"] {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: #101215;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+.action-row button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #2b3c34;       /* greenish dark background */
+  color: #d0f5dd;                  /* mint green text */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.action-row button:hover {
+  background-color: #3c5347;       /* slightly lighter green on hover */
+}
+
+/* Edit/Delete Buttons */
+.edit-delete-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #1976d2; /* Blue for edit */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: #d32f2f; /* Red for delete */
+}
+
+.edit-btn:hover {
+  background-color: #1565c0;
+}
+
+.delete-btn:hover {
+  background-color: #c62828;
+}
+
+.share-section {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.share-section a,
+.share-section button {
+  margin-right: 8px;
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.share-section button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+}
+
+
+/* Responsive */
+@media (max-width: 992px) {
+  #blog-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  #blog-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+

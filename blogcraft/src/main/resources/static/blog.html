@@ -1,0 +1,41 @@
+<!-- blog.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog Details</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .blog-card { border: 1px solid #ccc; padding: 20px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <div id="blog-container">
+    <p>Loading blog...</p>
+  </div>
+
+  <script>
+    // Step 1: Get blog ID from URL: blog.html?id=5
+    const params = new URLSearchParams(window.location.search);
+    const blogId = params.get("id");
+
+    // Step 2: Load blog from backend
+    fetch(`http://localhost:8080/api/blogs/${blogId}`)
+      .then(res => res.json())
+      .then(blog => {
+        const blogHTML = `
+          <div class="blog-card">
+            <h2>${blog.title}</h2>
+            <p><strong>Author:</strong> ${blog.author}</p>
+            <p><strong>Category:</strong> ${blog.category}</p>
+            <p>${blog.content}</p>
+          </div>
+        `;
+        document.getElementById('blog-container').innerHTML = blogHTML;
+      })
+      .catch(err => {
+        document.getElementById('blog-container').innerHTML = "<p>Blog not found.</p>";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
