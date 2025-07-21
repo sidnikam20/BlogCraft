@@ -32,7 +32,8 @@ BlogCraft is a full-stack web application built to simplify blog posting, viewin
 ## 📸 Screenshots of final output
 
  ### 📚 Blog Cards & Interactions
-<img width="1853" height="802" alt="Screenshot 2025-07-21 130133" src="https://github.com/user-attachments/assets/4c84e015-3bae-4f48-a187-9a57d7741a7c" />
+<img width="1323" height="820" alt="Screenshot 2025-07-21 130116" src="https://github.com/user-attachments/assets/c198c0a7-8aa7-49e7-be58-79605974b40b" />
+
 
 
 ### 🧾 Blog Dashboard
