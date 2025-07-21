@@ -39,41 +39,53 @@ async function loadDashboardStats() {
 
 // ✅ Post a new blog
 function postBlog() {
-  const title = document.getElementById("title").value;
-  const content = document.getElementById("content").value;
-  const author = document.getElementById("author").value || "Anonymous";
-  const category = document.getElementById("category").value || "General";
+  const title = document.getElementById("title").value.trim();
+  const content = document.getElementById("content").value.trim();
+  const author = document.getElementById("author").value.trim();
+  const category = document.getElementById("category").value.trim();
+  const imageFile = document.getElementById("imageInput").files[0];
 
   if (!title || !content) {
-    alert("Title and content are required!");
+    alert("Title and content are required.");
     return;
   }
 
-  const blogData = {
-    title,
-    content,
-    author,
-    category,
-    postDate: new Date().toISOString()
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("content", content);
+  formData.append("author", author);
+  formData.append("category", category);
+  if (imageFile) {
+    formData.append("image", imageFile);
+  }
+
+  // Save to localStorage or send to backend
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    const imageBase64 = event.target.result;
+
+    const blog = {
+      title,
+      content,
+      author,
+      category,
+      image: imageFile ? imageBase64 : null,
+      date: new Date().toISOString()
+    };
+
+    const blogs = JSON.parse(localStorage.getItem("blogs") || "[]");
+    blogs.push(blog);
+    localStorage.setItem("blogs", JSON.stringify(blogs));
+    location.reload(); // refresh to display new blog
   };
 
-  fetch("http://localhost:8080/api/blogs", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(blogData),
-  })
-    .then(res => res.json())
-    .then(data => {
-      alert("✅ Blog posted!");
-      addBlogToUI(data);
-      updateSummaryCards();
-      resetForm();
-    })
-    .catch(err => {
-      console.error("❌ Failed to post blog:", err);
-      alert("Error posting blog.");
-    });
+  if (imageFile) {
+    reader.readAsDataURL(imageFile);
+  } else {
+    reader.onload(); // trigger manually if no image
+  }
 }
+
 
 // ✅ Add blog to UI
 function addBlogToUI(blog) {
@@ -123,14 +135,25 @@ function renderBlogCard(blog) {
       </div>
     </div>
 
-    <div class="share-section">
+ <div class="share-section">
   <span>🔗 Share: </span>
-  <a href="https://wa.me/?text=Check out this blog: http://localhost:8080/blog.html?id=${blog.id}" target="_blank">WhatsApp</a> |
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/blog.html?id=${blog.id}" target="_blank">Facebook</a> |
-  <a href="https://twitter.com/intent/tweet?url=http://localhost:8080/blog.html?id=${blog.id}&text=Awesome blog!" target="_blank">Twitter</a> |
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:8080/blog.html?id=${blog.id}" target="_blank">LinkedIn</a> |
-  <button onclick="copyToClipboard('http://localhost:8080/blog.html?id=${blog.id}')">Copy Link</button>
+  <a href="https://wa.me/?text=Check out this blog: ${window.location.origin}/blog.html?id=${blog.id}" target="_blank">
+    <i class="fab fa-whatsapp" style="color:#25D366;"></i>
+  </a> |
+  <a href="https://www.facebook.com/sharer/sharer.php?u=${window.location.origin}/blog.html?id=${blog.id}" target="_blank">
+    <i class="fab fa-facebook" style="color:#1877F2;"></i>
+  </a> |
+  <a href="https://twitter.com/intent/tweet?url=${window.location.origin}/blog.html?id=${blog.id}&text=Awesome blog!" target="_blank">
+    <i class="fab fa-twitter" style="color:#1DA1F2;"></i>
+    </a> |
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=${window.location.origin}/blog.html?id=${blog.id}" target="_blank">
+    <i class="fab fa-linkedin" style="color:#0077b5;"></i>
+  </a> |
+  <button onclick="copyToClipboard('${window.location.origin}/blog.html?id=${blog.id}')">
+    <i class="fas fa-copy"></i> Copy Link
+  </button>
 </div>
+
 
 
     <hr>

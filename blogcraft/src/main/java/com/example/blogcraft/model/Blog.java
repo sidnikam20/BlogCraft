@@ -21,6 +21,7 @@ public class Blog {
     private LocalDate postDate;
     private int views;
     private int likes;
+    private String imagePath;
 
     @ElementCollection
     private List<String> comments = new ArrayList<>();  // ✅ Correct list field
