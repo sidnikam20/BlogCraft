@@ -1,47 +1,42 @@
-# BlogCraft
-BlogCraft - Blog Writing Portal 📝
-BlogCraft is an internal blogging platform designed to help employees write, edit, and publish blog content. It supports internal communication, knowledge sharing, and recognition of expertise across the organization.
+# 📝 BlogCraft – Content Publishing Portal
 
-🚀 Purpose
-To provide a platform for employees to:
+BlogCraft is a full-stack web application built to simplify blog posting, viewing, and engagement. It offers a rich dashboard to track total posts, likes, views, and comments in real time. Authors can post new blogs, and readers can like, comment, or share them easily.
 
-Write, edit, and publish blog content
+---
 
-Collaborate with team members
+## 🔧 Tech Stack
 
-Manage content workflows and SEO optimization
+- **Backend:** Java Spring Boot
+- **Database:** MySQL
+- **Frontend:** HTML, CSS, JavaScript
+- **Build Tool:** Maven
 
-📋 Requirement Description
-BlogCraft is a web-based application offering features for creating, editing, and publishing blog posts. The platform supports:
+---
 
-Draft management
+## ✨ Features
 
-Collaborative editing
+- 📬 Add new blog posts with title, content, author, and category
+- 🗃 View all blogs in card layout with author, date, and tags
+- 💬 Like, comment, and share each blog
+- 📊 Dashboard with:
+  - Total Blogs
+  - Total Likes, Comments, Views
+  - Top Rated Blog
+  - Last Post Date
+  - New Posts This Week
+- 🔎 Search blogs by title
+- 🔗 Social media share buttons (WhatsApp, Facebook, Twitter, LinkedIn)
 
-Tagging and categorization
+---
 
-SEO assistance
+## 📸 Screenshots of final output
 
-Content publishing workflows
+ ### 📚 Blog Cards & Interactions
+![Blog Cards]("C:\Users\siddhi\OneDrive\Pictures\Screenshots\Screenshot 2025-07-21 130116.png")
 
-🔑 Key Features
-✏️ Rich content creation and editing tools
+### 🧾 Blog Dashboard
+![BlogCraft Dashboard]("C:\Users\siddhi\OneDrive\Pictures\Screenshots\Screenshot 2025-07-21 130133.png")
 
-🤝 Collaboration features (comments, suggestions, co-authoring)
+---
 
-🗃 Blog post management (drafts & published content)
 
-📈 SEO suggestions and optimization
-
-🏷 Tagging and categorization of posts
-
-📊 Content dashboard for analytics and tracking
-
-🧩 Module Breakdown
-Module	Description
-Blog Editor	Rich text editor with formatting tools, image/video embedding
-Collaboration Tools	Co-authoring, commenting, and suggesting edits
-Publishing Workflow	Draft → Review → Approve → Publish
-SEO Assistant	Provides keyword, title, and readability suggestions
-Tagging & Categorization	Classifies blogs by topic, domain, or audience
-Content Dashboard	Tracks blog status, readership, and engagement metrics
