@@ -32,10 +32,12 @@ BlogCraft is a full-stack web application built to simplify blog posting, viewin
 ## 📸 Screenshots of final output
 
  ### 📚 Blog Cards & Interactions
-![Blog Cards]("C:\Users\siddhi\OneDrive\Pictures\Screenshots\Screenshot 2025-07-21 130116.png")
+<img width="1853" height="802" alt="Screenshot 2025-07-21 130133" src="https://github.com/user-attachments/assets/4c84e015-3bae-4f48-a187-9a57d7741a7c" />
+
 
 ### 🧾 Blog Dashboard
-![BlogCraft Dashboard]("C:\Users\siddhi\OneDrive\Pictures\Screenshots\Screenshot 2025-07-21 130133.png")
+<img width="1853" height="802" alt="Screenshot 2025-07-21 130133" src="https://github.com/user-attachments/assets/51e91448-0d5f-4e84-bda7-3fa41ab6d261" />
+
 
 ---
 
